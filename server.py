@@ -23,9 +23,9 @@ def tcplink(sock, addr):
         while True:
             data = sock.recv(1024)
             result = result + data
-            if data.decode("gb2312").find("done1997") != -1:
+            if data.decode("gb2312", "ignore").find("done1997") != -1:
                 break
-        print(result.decode("gb2312"))
+        print(result.decode("gb2312", "ignore"))
             
 
         time.sleep(1)
