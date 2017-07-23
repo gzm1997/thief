@@ -12,32 +12,39 @@ def tcplink(sock, addr):
     print("sock", sock)
     print("addr", addr)
     print("accept from %s:%s" % addr) 
-    sock.send(b"welcome!")
-    f = open("t.txt", "wb")
-    f.close()
+    sock.send(b"you connect successfully!")
 
     while True:
-        data = sock.recv(1024)
-        f = open("t.txt", "ab")
-        f.write(data.decode("gb2312").encode("utf-8"))
+        to_do = input("input what to run: ")
+        sock.send(to_do.encode("utf-8"))
+        if to_do == "exit1997":
+            break
+        result = b""
+        while True:
+            data = sock.recv(1024)
+            result = result + data
+            if len(data) < 1024:
+                break
+        print(result.decode("gb2312"))
+            
 
         time.sleep(1)
-        if data.decode("gb2312").find("exit") != -1:
-            print("accpet exit")
-            break
+        
     sock.close()
     print("connection from %s:%s closed" % addr)
 
 
-"""
+
 sock, addr = s.accept()
-t = threading.Thread(target = tcplink, args = (sock, addr))
-t.start()
+tcplink(sock, addr)
+
+
 """
-
-
 while True:
     sock, addr = s.accept()
     t = threading.Thread(target = tcplink, args = (sock, addr))
     t.start()
+"""
 
+
+    
