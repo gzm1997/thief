@@ -36,8 +36,7 @@ To run client:
 ## Rendering ##
 ![rendering][1]
 
-![rendering show][2]
+
 
 
   [1]: https://github.com/gzm1997/thief/blob/master/screenshots/thief.gif?raw=true
-  [2]: https://github.com/gzm1997/thief/blob/master/screenshots/thief.png?raw=true
