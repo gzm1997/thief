@@ -5,7 +5,7 @@
 
 ----------
 ## Description ##
-This is a small tool of tcp, which can tranform terminal command you wana run from your server running server.py to a computer that is running the client.py in this project.
+This is a small tool of tcp, which can tranform terminal command you wana run from your server running server.py to a computer that is running the client.py in this project. And then the client will run commonds in that machine as well as return the result.
 
 
 ----------
