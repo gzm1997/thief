@@ -19,8 +19,7 @@ cmd | useage | example
 --- | ------ | -------
 dld filename | show the detail of the file | dld test.txt
 exit1997 | disconnect and end operation | exit1997
-cd foldername | get into a folder(the same in windows) | cd test
-others | the same commands in the operation system runing client.py | ... 
+others | the same commands in the operation system runing client.py | cd folder
 
 To run client:
 
