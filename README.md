@@ -5,7 +5,7 @@
 
 ----------
 ## Description ##
-This is a small tool of tcp, which can transport terminal command you wana run from your server running server.py to a computer that is running the client.py in this project. And then the client will run commands in that machine as well as return the result.
+This is a small tool of tcp, which can tranform terminal command you wana run from your server running server.py to a computer that is running the client.py in this project. And then the client will run commonds in that machine as well as return the result.
 
 
 ----------
@@ -36,7 +36,9 @@ To run client:
 ## Rendering ##
 ![rendering][1]
 
-
+## Preview image ##
+![preview][2]
 
 
   [1]: https://github.com/gzm1997/thief/blob/master/screenshots/thief.gif?raw=true
+  [2]: https://github.com/gzm1997/thief/blob/master/screenshots/pre_image.gif?raw=true
