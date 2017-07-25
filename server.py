@@ -1,6 +1,8 @@
 import socket
 import threading
 import time
+from PIL import Image
+import io
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -25,7 +27,11 @@ def tcplink(sock, addr):
             result = result + data
             if data.decode("gb2312", "ignore").find("done1997") != -1:
                 break
-        print(result.decode("gb2312", "ignore"))
+        if to_do.find("dld") != -1 and (to_do.find(".jpg") != -1 or to_do.find(".jpeg") != -1 or to_do.find(".png") != -1 or to_do.find(".gif") != -1 or to_do.find(".tif") != -1):
+            i = Image.open(io.BytesIO(bytearray(result[:-9])))
+            i.show()
+        else:
+            print(result.decode("gb2312", "ignore"))
             
 
         time.sleep(1)
